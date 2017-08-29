@@ -25,6 +25,10 @@ public class QuestionEntry {
     */
     protected Map<String,QuestionLangEntry> entries = new HashMap<>();
 
+    public QuestionEntry (String questionName) {
+        this.name = questionName;
+    }
+
     public List<String> getLanguages () {
         return this.langList;
     }

@@ -11,10 +11,11 @@
         <menus>
           <Menu mnemonicParsing="false" text="Dialog">
             <items>
-              <MenuItem mnemonicParsing="false" text="New..." />
+              <MenuItem fx:id="newDialogMenuItem" mnemonicParsing="false" text="New..." />
                   <MenuItem mnemonicParsing="false" text="Open" />
                   <MenuItem mnemonicParsing="false" text="Save" />
                   <MenuItem mnemonicParsing="false" text="Save..." />
+                  <MenuItem fx:id="closeDialogMenuItem" mnemonicParsing="false" text="Close Dialog" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

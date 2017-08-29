@@ -2,6 +2,9 @@ package de.leeksanddragons.tools.dialog.javafx.controller;
 
 import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.model.QuestionEntry;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Created by Justin on 29.08.2017.
@@ -37,8 +40,18 @@ public class MainWindowController implements FXMLController, Initializable {
     @FXML
     protected TabPane tabPane;
 
+    /**
+    * instance of language loader
+    */
+    protected LangLoader langLoader = null;
+
+    /**
+    * map with all questions of dialog
+    */
+    protected Map<String,QuestionEntry> questionMap = new HashMap<>();
+
     public MainWindowController (LangLoader loader) {
-        //
+        this.langLoader = loader;
     }
 
     @Override
@@ -92,7 +105,28 @@ public class MainWindowController implements FXMLController, Initializable {
     protected void addQuestion (String questionName) {
         System.out.println("add question: " + questionName);
 
-        //TODO: add question to list
+        //create question entry and add to list
+        QuestionEntry entry = new QuestionEntry(questionName);
+        this.questionMap.put(questionName, entry);
+
+        //refresh listview
+        this.refreshListView();
+    }
+
+    protected void refreshListView () {
+
+        this.questionList.getItems().clear();
+
+        //create list with all questions
+        ObservableList<String> questions = FXCollections.observableArrayList();
+
+        //iterate through all questions
+        for (Map.Entry<String,QuestionEntry> entry : this.questionMap.entrySet()) {
+            //add question name to list
+            questions.add(entry.getKey());
+        }
+
+        this.questionList.setItems(questions);
     }
 
 }

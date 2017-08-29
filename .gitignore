@@ -5,6 +5,9 @@
 !.gitignore
 !.travis.yml
 
+*languages.json
+languages.json
+
 ### Windows ###
 # Windows image file caches
 Thumbs.db

@@ -218,7 +218,7 @@ public class MainWindowController implements FXMLController, Initializable {
         //search for selected item
         String selectedName = this.questionList.getSelectionModel().getSelectedItem();
 
-        System.out.println("selected question: " + selectedName);
+        //System.out.println("selected question: " + selectedName);
 
         if (!this.questionMap.containsKey(selectedName)) {
             System.err.println("question map doesnt contains question name: " + selectedName);

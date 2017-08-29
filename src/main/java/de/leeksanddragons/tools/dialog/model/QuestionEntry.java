@@ -37,6 +37,26 @@ public class QuestionEntry implements JSONSerializable {
         return this.langList;
     }
 
+    public void addLang (String tokenName) {
+        QuestionLangEntry entry = new QuestionLangEntry(tokenName);
+
+        this.entries.put(tokenName, entry);
+        this.langList.add(tokenName);
+    }
+
+    public void removeLang (String tokenName) {
+        this.entries.remove(tokenName);
+        this.langList.remove(tokenName);
+    }
+
+    public QuestionLangEntry getLang (String tokenName) {
+        if (!(this.entries.containsKey(tokenName))) {
+            return null;
+        }
+
+        return this.entries.get(tokenName);
+    }
+
     @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

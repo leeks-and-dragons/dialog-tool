@@ -11,9 +11,25 @@ import java.util.List;
  */
 public class QuestionLangEntry implements JSONSerializable {
 
+    protected String text = "";
+    protected String langToken = "";
+
+    protected String choice1 = "";
+    protected String choice2 = "";
+    protected String choice3 = "";
+
+    public QuestionLangEntry (String langToken) {
+        this.langToken = langToken;
+    }
+
     @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
+
+        //save lang token and question text
+        json.put("langToken", this.langToken);
+
+        json.put("text", this.text);
 
         return json;
     }

@@ -36,6 +36,9 @@ public class MainWindowController implements FXMLController, Initializable {
     protected Button newQuestionButton;
 
     @FXML
+    protected Label questionsLabel;
+
+    @FXML
     protected TabPane tabPane;
 
     /**
@@ -106,6 +109,7 @@ public class MainWindowController implements FXMLController, Initializable {
     protected void hideAllWidgets () {
         //hide some widgets, if no dialog was loaded
         tabPane.setVisible(false);
+        questionsLabel.setVisible(false);
         questionList.setVisible(false);
         newQuestionTextField.setVisible(false);
         newQuestionButton.setVisible(false);
@@ -114,6 +118,7 @@ public class MainWindowController implements FXMLController, Initializable {
     protected void showAllWidgets () {
         //show some widgets, if no dialog was loaded
         tabPane.setVisible(true);
+        questionsLabel.setVisible(true);
         questionList.setVisible(true);
         newQuestionTextField.setVisible(true);
         newQuestionButton.setVisible(true);
@@ -125,6 +130,9 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //refresh list
         this.refreshListView();
+
+        //refresh tab pane
+        this.refreshTabPane();
 
         //show all widgets
         this.showAllWidgets();
@@ -165,6 +173,21 @@ public class MainWindowController implements FXMLController, Initializable {
         }
 
         this.questionList.setItems(questions);
+    }
+
+    protected void refreshTabPane () {
+        //check, if list contains entries
+        if (this.questionMap.size() <= 0) {
+            //remove all tabs
+            tabPane.getTabs().clear();
+
+            return;
+        }
+
+        //search for selected item
+        String selectedName = this.questionList.getSelectionModel().getSelectedItem();
+
+        System.out.println("selected question: " + selectedName);
     }
 
 }

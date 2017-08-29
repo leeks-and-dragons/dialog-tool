@@ -183,6 +183,10 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //refresh listview
         this.refreshListView();
+
+        //select question
+        this.questionList.getSelectionModel().select(questionName);
+        this.refreshTabPane();
     }
 
     protected void refreshListView () {

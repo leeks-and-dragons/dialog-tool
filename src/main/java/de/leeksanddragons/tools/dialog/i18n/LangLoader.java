@@ -3,6 +3,7 @@ package de.leeksanddragons.tools.dialog.i18n;
 import de.leeksanddragons.tools.dialog.Main;
 import de.leeksanddragons.tools.dialog.model.LangEntry;
 import de.leeksanddragons.tools.dialog.utils.FileUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -63,11 +64,36 @@ public class LangLoader {
             this.load(fileName);
         }
 
+        //get array with languages
+        JSONArray jsonArray = json.getJSONArray("langs");
 
+        if (jsonArray.length() <= 0) {
+            throw new RuntimeException("no languages found in language file! Path: " + fileName + " .");
+        }
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            //get json object
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            //parse entry
+            parseLangArrayEntry(jsonObject);
+        }
     }
 
     public List<LangEntry> listSupportedLanguages () {
         return this.list;
+    }
+
+    private void parseLangArrayEntry (JSONObject json) {
+        //parse json and get token name and title of language
+        String tokenName = json.getString("tokenName");
+        String title = json.getString("title");
+
+        //create new language entry
+        LangEntry langEntry = new LangEntry(tokenName, title);
+
+        //add language to list
+        this.list.add(langEntry);
     }
 
 }

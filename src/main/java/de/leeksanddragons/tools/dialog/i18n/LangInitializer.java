@@ -1,6 +1,7 @@
-package de.leeksanddragons.tools.dialog.utils;
+package de.leeksanddragons.tools.dialog.i18n;
 
 import de.leeksanddragons.tools.dialog.Main;
+import de.leeksanddragons.tools.dialog.utils.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,6 +17,8 @@ public class LangInitializer {
     public static void init () {
         //generate languages file, if neccessary
         if (!(new File("./data/i18n/languages.json").exists())) {
+            System.out.println("create new language file.");
+
             //create json object
             JSONObject json = new JSONObject();
 

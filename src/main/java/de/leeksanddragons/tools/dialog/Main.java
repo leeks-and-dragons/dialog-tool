@@ -1,14 +1,7 @@
 package de.leeksanddragons.tools.dialog;
 
-import de.leeksanddragons.tools.dialog.utils.FileUtils;
-import de.leeksanddragons.tools.dialog.utils.LangInitializer;
+import de.leeksanddragons.tools.dialog.i18n.LangInitializer;
 import javafx.application.Application;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Created by Justin on 29.08.2017.

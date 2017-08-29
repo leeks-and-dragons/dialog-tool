@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -32,6 +33,9 @@ public class MainWindowController implements FXMLController, Initializable {
     @FXML
     protected Button newQuestionButton;
 
+    @FXML
+    protected TabPane tabPane;
+
     public MainWindowController () {
         //
     }
@@ -53,6 +57,9 @@ public class MainWindowController implements FXMLController, Initializable {
                 }
             }
         });
+
+        //hide TapPane, if no dialog was loaded
+        tabPane.setVisible(false);
     }
 
     @Override

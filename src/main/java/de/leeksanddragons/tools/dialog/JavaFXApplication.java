@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog;
 
+import de.leeksanddragons.tools.dialog.javafx.window.MainWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

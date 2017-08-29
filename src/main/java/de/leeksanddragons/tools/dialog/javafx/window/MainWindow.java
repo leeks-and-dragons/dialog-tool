@@ -1,4 +1,4 @@
-package de.leeksanddragons.tools.dialog;
+package de.leeksanddragons.tools.dialog.javafx.window;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLWindow;
 import de.leeksanddragons.tools.dialog.javafx.controller.MainWindowController;

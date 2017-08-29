@@ -2,6 +2,7 @@ package de.leeksanddragons.tools.dialog.javafx.controller;
 
 import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.model.LangEntry;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -92,6 +95,22 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
+        this.newQuestionTextField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    String questionName = newQuestionTextField.getText().trim();
+
+                    if (!questionName.isEmpty()) {
+                        //check, if question is already in list
+                        if (!questionList.getItems().contains(questionName)) {
+                            addQuestion(questionName);
+                        }
+                    }
+                }
+            }
+        });
+
         this.newDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -99,6 +118,13 @@ public class MainWindowController implements FXMLController, Initializable {
 
                 //create new dialog
                 createNewDialog();
+            }
+        });
+
+        this.questionList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                refreshTabPane();
             }
         });
 
@@ -172,6 +198,8 @@ public class MainWindowController implements FXMLController, Initializable {
             questions.add(entry.getKey());
         }
 
+        Collections.sort(questions);
+
         this.questionList.setItems(questions);
     }
 
@@ -184,10 +212,30 @@ public class MainWindowController implements FXMLController, Initializable {
             return;
         }
 
+        //clear all tabs
+        tabPane.getTabs().clear();
+
         //search for selected item
         String selectedName = this.questionList.getSelectionModel().getSelectedItem();
 
         System.out.println("selected question: " + selectedName);
+
+        if (!this.questionMap.containsKey(selectedName)) {
+            System.err.println("question map doesnt contains question name: " + selectedName);
+
+            return;
+        }
+
+        QuestionEntry entry = this.questionMap.get(selectedName);
+
+        //create new tabs for each language
+
+        //iterate through all supported languages
+        for (LangEntry langEntry : this.langLoader.listSupportedLanguages()) {
+            Tab tab = new Tab(langEntry.getTitle());
+
+            tabPane.getTabs().add(tab);
+        }
     }
 
 }

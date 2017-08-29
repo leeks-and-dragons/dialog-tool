@@ -95,7 +95,7 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
-        this.newQuestionTextField.setOnKeyTyped(new EventHandler<KeyEvent>() {
+        this.newQuestionTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.ENTER)) {

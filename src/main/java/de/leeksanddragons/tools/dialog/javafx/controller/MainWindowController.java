@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog.javafx.controller;
 
+import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class MainWindowController implements FXMLController, Initializable {
     @FXML
     protected TabPane tabPane;
 
-    public MainWindowController () {
+    public MainWindowController (LangLoader loader) {
         //
     }
 
@@ -58,8 +59,24 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
-        //hide TapPane, if no dialog was loaded
+        //hide all widgets, if no dialog was loaded
+        this.hideAllWidgets();
+    }
+
+    protected void hideAllWidgets () {
+        //hide some widgets, if no dialog was loaded
         tabPane.setVisible(false);
+        questionList.setVisible(false);
+        newQuestionTextField.setVisible(false);
+        newQuestionButton.setVisible(false);
+    }
+
+    protected void showAllWidgets () {
+        //show some widgets, if no dialog was loaded
+        tabPane.setVisible(true);
+        questionList.setVisible(true);
+        newQuestionTextField.setVisible(true);
+        newQuestionButton.setVisible(true);
     }
 
     @Override

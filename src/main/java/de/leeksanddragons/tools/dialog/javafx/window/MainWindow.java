@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog.javafx.window;
 
+import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLWindow;
 import de.leeksanddragons.tools.dialog.javafx.controller.MainWindowController;
 import javafx.event.EventHandler;
@@ -10,8 +11,8 @@ import javafx.stage.WindowEvent;
  */
 public class MainWindow extends FXMLWindow {
 
-    public MainWindow () {
-        super("Leeks & Dragons - Dialog Tool", 820, 640, "./data/ui/mainwindow.fxml", new MainWindowController());
+    public MainWindow (LangLoader langLoader) {
+        super("Leeks & Dragons - Dialog Tool", 820, 640, "./data/ui/mainwindow.fxml", new MainWindowController(langLoader));
 
         //add handler which will be executed, if user closes window
         this.stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

@@ -17,13 +17,6 @@ public class Main {
         //initialize language files
         LangInitializer.init("./data/i18n/languages.json");
 
-        try {
-            new LangLoader().load("./data/i18n/languages.json");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(0);
-        }
-
         //create JavaFX window
         Application.launch(JavaFXApplication.class, args);
     }

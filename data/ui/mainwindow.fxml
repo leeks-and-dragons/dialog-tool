@@ -12,9 +12,9 @@
           <Menu mnemonicParsing="false" text="Dialog">
             <items>
               <MenuItem fx:id="newDialogMenuItem" mnemonicParsing="false" text="New..." />
-                  <MenuItem mnemonicParsing="false" text="Open" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save..." />
+                  <MenuItem fx:id="openDialogMenuItem" mnemonicParsing="false" text="Open" />
+                  <MenuItem fx:id="saveDialogMenuItem" mnemonicParsing="false" text="Save" />
+                  <MenuItem fx:id="savePathDialogMenuItem" mnemonicParsing="false" text="Save..." />
                   <MenuItem fx:id="closeDialogMenuItem" mnemonicParsing="false" text="Close Dialog" />
             </items>
           </Menu>

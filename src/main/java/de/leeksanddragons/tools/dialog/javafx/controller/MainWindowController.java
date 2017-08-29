@@ -9,10 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -49,6 +46,25 @@ public class MainWindowController implements FXMLController, Initializable {
     * map with all questions of dialog
     */
     protected Map<String,QuestionEntry> questionMap = new HashMap<>();
+
+    /**
+    * menu items
+    */
+
+    @FXML
+    protected MenuItem newDialogMenuItem;
+
+    @FXML
+    protected MenuItem openDialogMenuItem;
+
+    @FXML
+    protected MenuItem saveDialogMenuItem;
+
+    @FXML
+    protected MenuItem savePathDialogMenuItem;
+
+    @FXML
+    protected MenuItem closeDialogMenuItem;
 
     public MainWindowController (LangLoader loader) {
         this.langLoader = loader;

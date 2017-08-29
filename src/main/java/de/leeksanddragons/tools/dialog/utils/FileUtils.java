@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 /**
  * Utils for file operations
  *
@@ -78,6 +80,10 @@ public class FileUtils {
      */
     public static void writeFile(String path, String content, Charset encoding) throws IOException {
         Files.write(Paths.get(path), content.getBytes(encoding), StandardOpenOption.CREATE);
+    }
+
+    public static void moveFile (String oldFile, String newFile) throws IOException {
+        Files.move(Paths.get(oldFile), Paths.get(newFile), REPLACE_EXISTING);
     }
 
 }

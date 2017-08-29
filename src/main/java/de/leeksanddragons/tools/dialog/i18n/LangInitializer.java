@@ -14,9 +14,9 @@ import java.nio.charset.StandardCharsets;
  */
 public class LangInitializer {
 
-    public static void init () {
+    public static void init (String path) {
         //generate languages file, if neccessary
-        if (!(new File("./data/i18n/languages.json").exists())) {
+        if (!(new File(path).exists())) {
             System.out.println("create new language file.");
 
             //create json object
@@ -35,7 +35,7 @@ public class LangInitializer {
             json.put("langs", jsonArray);
 
             try {
-                FileUtils.writeFile("./data/i18n/languages.json", json.toString(), StandardCharsets.UTF_8);
+                FileUtils.writeFile(path, json.toString(), StandardCharsets.UTF_8);
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(0);

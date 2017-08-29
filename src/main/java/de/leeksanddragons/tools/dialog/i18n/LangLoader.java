@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog.i18n;
 
+import de.leeksanddragons.tools.dialog.Main;
 import de.leeksanddragons.tools.dialog.model.LangEntry;
 import de.leeksanddragons.tools.dialog.utils.FileUtils;
 import org.json.JSONObject;
@@ -21,6 +22,8 @@ public class LangLoader {
     */
     protected List<LangEntry> list = new ArrayList<>();
 
+    protected int retrys = 0;
+
     public LangLoader () {
         //
     }
@@ -39,6 +42,28 @@ public class LangLoader {
 
         //get version of dialog tool
         int toolVersion = json.getInt("tool_version");
+
+        //check, if file is supported
+        if (toolVersion > Main.VERSION_NUMBER) {
+            System.err.println("Could not load language.json, because file belongs to an newer version of this tool.");
+
+            //rename old file
+            FileUtils.moveFile(fileName, fileName.substring(0, fileName.length() - 5) + "_backup_" + System.currentTimeMillis() + ".json");
+
+            //create an new file
+            LangInitializer.init(fileName);
+
+            retrys++;
+
+            if (retrys > 3) {
+                throw new RuntimeException("Infite loop found in class LangLoader! Maybe LangInitializer writes an wrong tool version?");
+            }
+
+            //load file again
+            this.load(fileName);
+        }
+
+
     }
 
     public List<LangEntry> listSupportedLanguages () {

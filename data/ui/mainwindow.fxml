@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="800.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Dialog">
+            <items>
+              <MenuItem mnemonicParsing="false" text="New..." />
+                  <MenuItem mnemonicParsing="false" text="Open" />
+                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" text="Save..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <HBox layoutX="-7.0" layoutY="27.0" prefHeight="577.0" prefWidth="814.0">
+         <children>
+            <Pane prefHeight="577.0" prefWidth="300.0">
+               <children>
+                  <ListView fx:id="questionList" layoutX="14.0" layoutY="39.0" prefHeight="488.0" prefWidth="277.0" />
+                  <Label layoutX="14.0" layoutY="6.0" text="Questions:" />
+                  <TextField fx:id="newQuestionTextField" layoutX="14.0" layoutY="536.0" prefHeight="25.0" prefWidth="233.0" />
+                  <Button fx:id="newQuestionButton" layoutX="253.0" layoutY="536.0" mnemonicParsing="false" text="Add" />
+               </children>
+            </Pane>
+            <Pane />
+            <TabPane prefHeight="538.0" prefWidth="506.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="German" />
+                <Tab text="English" />
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

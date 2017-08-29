@@ -5,6 +5,7 @@ import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -88,6 +89,16 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
+        this.newDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO: add an confirmation dialog, if an dialog is already opened
+
+                //create new dialog
+                createNewDialog();
+            }
+        });
+
         //hide all widgets, if no dialog was loaded
         this.hideAllWidgets();
     }
@@ -106,6 +117,17 @@ public class MainWindowController implements FXMLController, Initializable {
         questionList.setVisible(true);
         newQuestionTextField.setVisible(true);
         newQuestionButton.setVisible(true);
+    }
+
+    protected void createNewDialog () {
+        //clear map
+        this.questionMap.clear();
+
+        //refresh list
+        this.refreshListView();
+
+        //show all widgets
+        this.showAllWidgets();
     }
 
     @Override

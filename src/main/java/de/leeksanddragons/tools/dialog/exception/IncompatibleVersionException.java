@@ -7,8 +7,16 @@ package de.leeksanddragons.tools.dialog.exception;
  */
 public class IncompatibleVersionException extends Exception {
 
-    public IncompatibleVersionException (String message) {
+    protected int requestedVersion = 0;
+
+    public IncompatibleVersionException (String message, int requestedVersion) {
         super(message);
+
+        this.requestedVersion = requestedVersion;
+    }
+
+    public int getRequestedVersion () {
+        return this.requestedVersion;
     }
 
 }

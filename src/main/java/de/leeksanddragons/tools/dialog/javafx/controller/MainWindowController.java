@@ -331,10 +331,8 @@ public class MainWindowController implements FXMLController, Initializable {
         try {
             this.load(this.lastSavePath);
         } catch (IncompatibleVersionException e) {
-            e.printStackTrace();
-
             //version isnt supported by this tool
-            JavaFXUtils.showErrorDialog("Error", "Cannot open this Dialog, because dialog was created with an newer version of this tool.");
+            JavaFXUtils.showErrorDialog("Error", "Cannot open this Dialog, because dialog was created with an newer version of this tool (requested: " + e.getRequestedVersion() + ", tool version: " + Main.VERSION_NUMBER + ").");
 
             //hide all widgets
             hideAllWidgets();
@@ -420,10 +418,10 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //check tool version
         int requestedToolVersion = json.getInt("tool_version");
-        System.out.println("requested tool version" + requestedToolVersion);
+        System.out.println("requested tool version: " + requestedToolVersion);
 
         if (requestedToolVersion > Main.VERSION_NUMBER) {
-            throw new IncompatibleVersionException("requested version: " + requestedToolVersion + ", tool version: " + Main.VERSION_NUMBER + ".");
+            throw new IncompatibleVersionException("requested version: " + requestedToolVersion + ", tool version: " + Main.VERSION_NUMBER + ".", requestedToolVersion);
         }
     }
 

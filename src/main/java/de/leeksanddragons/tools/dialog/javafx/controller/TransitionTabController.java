@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.javafx.controller;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.SaveableTab;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import de.leeksanddragons.tools.dialog.model.QuestionLangEntry;
 import javafx.fxml.Initializable;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Justin on 30.08.2017.
  */
-public class TransitionTabController implements FXMLController, Initializable {
+public class TransitionTabController implements FXMLController, Initializable, SaveableTab {
 
     public TransitionTabController (QuestionEntry entry) {
         //
@@ -23,6 +24,10 @@ public class TransitionTabController implements FXMLController, Initializable {
     @Override
     public void init(Stage stage, Scene scene, Pane pane) {
 
+    }
+
+    public void saveTab () {
+        //
     }
 
     @Override

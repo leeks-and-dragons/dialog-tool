@@ -58,6 +58,10 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
         return this.entries.get(tokenName);
     }
 
+    public String getQuestionName () {
+        return this.name;
+    }
+
     @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

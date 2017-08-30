@@ -64,7 +64,7 @@
             </Label>
             <ToolBar orientation="VERTICAL" prefHeight="133.0" prefWidth="405.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <items>
-                  <TextField fx:id="choise1Text" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="280.0" promptText="Choise 1 Text" />
+                  <TextField fx:id="choise1TextField" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="280.0" promptText="Choise 1 Text" />
                </items>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -80,7 +80,7 @@
             </Label>
             <ToolBar layoutX="125.0" layoutY="227.0" orientation="VERTICAL" prefHeight="133.0" prefWidth="405.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <items>
-                  <TextField fx:id="choise2Text" promptText="Choise 2 Text" />
+                  <TextField fx:id="choise2TextField" promptText="Choise 2 Text" />
                </items>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

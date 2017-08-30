@@ -3,6 +3,7 @@ package de.leeksanddragons.tools.dialog.javafx.controller;
 import de.leeksanddragons.tools.dialog.Main;
 import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.SaveableTab;
 import de.leeksanddragons.tools.dialog.javafx.window.OpenFileDialog;
 import de.leeksanddragons.tools.dialog.javafx.window.SaveFileDialog;
 import de.leeksanddragons.tools.dialog.model.LangEntry;
@@ -95,6 +96,11 @@ public class MainWindowController implements FXMLController, Initializable {
     protected MenuItem aboutMenuItem;
 
     protected String lastSavePath = "";
+
+    /**
+    * list with all opened tabs
+    */
+    protected List<SaveableTab> openTabs = new ArrayList<>();
 
     public MainWindowController (LangLoader loader) {
         this.langLoader = loader;
@@ -324,7 +330,16 @@ public class MainWindowController implements FXMLController, Initializable {
         this.load(this.lastSavePath);
     }
 
+    protected void saveOpenTabs () {
+        for (SaveableTab tab : this.openTabs) {
+            tab.saveTab();
+        }
+    }
+
     protected void save (String filePath) {
+        //save all opened tab to entries first
+        this.saveOpenTabs();
+
         System.out.println("save path: " + filePath);
 
         //create new json object
@@ -445,6 +460,9 @@ public class MainWindowController implements FXMLController, Initializable {
     }
 
     protected void refreshTabPane () {
+        //save all opened tab to entries first
+        this.saveOpenTabs();
+
         //check, if list contains entries
         if (this.questionMap.size() <= 0) {
             //remove all tabs
@@ -455,6 +473,9 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //clear all tabs
         tabPane.getTabs().clear();
+
+        //clear open tabs list
+        this.openTabs.clear();
 
         //search for selected item
         String selectedName = this.questionList.getSelectionModel().getSelectedItem();
@@ -495,7 +516,9 @@ public class MainWindowController implements FXMLController, Initializable {
             FXMLLoader loader = new FXMLLoader(new File(TAB_FXML_PATH).toURI().toURL());
 
             //set controller
-            loader.setController(new TabController(langTitle, entry));
+            TabController tabController = new TabController(tab, entry);
+            this.openTabs.add(tabController);
+            loader.setController(tabController);
 
             Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
 
@@ -517,7 +540,9 @@ public class MainWindowController implements FXMLController, Initializable {
             FXMLLoader loader = new FXMLLoader(new File(TRANSITION_TAB_FXML_PATH).toURI().toURL());
 
             //set controller
-            loader.setController(new TransitionTabController(entry));
+            TransitionTabController tabController = new TransitionTabController(entry);
+            this.openTabs.add(tabController);
+            loader.setController(tabController);
 
             Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
 

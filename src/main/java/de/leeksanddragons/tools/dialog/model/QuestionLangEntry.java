@@ -23,6 +23,26 @@ public class QuestionLangEntry implements JSONSerializable, JSONLoadable {
         this.langToken = langToken;
     }
 
+    public String getText () {
+        return this.text;
+    }
+
+    public void setText (String text) {
+        this.text = text;
+    }
+
+    public String getChoise1Text () {
+        return this.choice1;
+    }
+
+    public String getChoise2Text () {
+        return this.choice2;
+    }
+
+    public String getChoise3Text () {
+        return this.choice3;
+    }
+
     @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

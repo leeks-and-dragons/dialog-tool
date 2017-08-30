@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -125,6 +127,11 @@ public class MainWindowController implements FXMLController, Initializable {
                 removeQuestion(selectedName);
             }
         });
+
+        //set button image
+        Image imageDecline = new Image("file:data/icons/cancel_16.png");
+        this.deleteButton.setGraphic(new ImageView(imageDecline));
+        this.deleteButton.setText("");
 
         this.newQuestionTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -249,6 +256,8 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //show all widgets
         this.showAllWidgets();
+
+        this.deleteButton.setVisible(false);
     }
 
     protected void openSaveDialog () {
@@ -418,6 +427,14 @@ public class MainWindowController implements FXMLController, Initializable {
         }
 
         Collections.sort(questions);
+
+        if (questions.size() <= 0) {
+            //hide delete button
+            this.deleteButton.setVisible(false);
+        } else {
+            //show delete button
+            this.deleteButton.setVisible(true);
+        }
 
         this.questionList.setItems(questions);
     }

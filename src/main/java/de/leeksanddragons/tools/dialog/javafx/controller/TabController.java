@@ -48,20 +48,13 @@ public class TabController implements FXMLController, Initializable, SaveableTab
 
     @Override
     public void init(Stage stage, Scene scene, Pane pane) {
+        System.out.println("entry text: " + entry.getText());
+
         //fill widgets
         this.textArea.setText(entry.getText());
         this.choise1TextField.setText(entry.getChoise1Text());
         this.choise2TextField.setText(entry.getChoise2Text());
         this.choise3TextField.setText(entry.getChoise3Text());
-
-        this.textArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                System.out.println("text: " + textArea.getText());
-
-                entry.setText(textArea.getText());
-            }
-        });
     }
 
     public void saveTab () {

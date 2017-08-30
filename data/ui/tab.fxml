@@ -88,7 +88,7 @@
             </ToolBar>
             <ToolBar layoutX="120.0" layoutY="328.0" orientation="VERTICAL" prefHeight="133.0" prefWidth="405.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <items>
-                  <TextField fx:id="choise3Text" promptText="Choise 3 Text" />
+                  <TextField fx:id="choise3TextField" promptText="Choise 3 Text" />
                </items>
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

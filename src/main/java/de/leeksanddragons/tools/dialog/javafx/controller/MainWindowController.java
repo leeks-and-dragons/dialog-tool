@@ -522,6 +522,9 @@ public class MainWindowController implements FXMLController, Initializable {
 
             Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
 
+            //initialize tab controller
+            tabController.init(stage, null, rootPane);
+
             tab.setContent(rootPane);
             tab.setClosable(false);
         } catch (IOException e) {
@@ -545,6 +548,9 @@ public class MainWindowController implements FXMLController, Initializable {
             loader.setController(tabController);
 
             Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
+
+            //initialize tab controller
+            tabController.init(stage, null, rootPane);
 
             tab.setContent(rootPane);
             tab.setClosable(false);

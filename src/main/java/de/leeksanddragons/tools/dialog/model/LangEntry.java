@@ -21,4 +21,17 @@ public class LangEntry {
         return this.title;
     }
 
+    public boolean equals (LangEntry entry1) {
+        return this.tokenName.equals(entry1.getTokenName()) && this.title.equals(entry1.getTitle());
+    }
+
+    @Override
+    public boolean equals (Object obj) {
+        if (!(obj instanceof LangEntry)) {
+            throw new IllegalStateException("equals() only can compare LangEntrys. class of compared class " + obj.getClass() + " isnt supported.");
+        }
+
+        return this.equals((LangEntry) obj);
+    }
+
 }

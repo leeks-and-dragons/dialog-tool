@@ -39,6 +39,7 @@ import java.util.*;
 public class MainWindowController implements FXMLController, Initializable {
 
     public static final String TAB_FXML_PATH = "./data/ui/tab.fxml";
+    public static final String TRANSITION_TAB_FXML_PATH = "./data/ui/transition_tab.fxml";
 
     @FXML
     protected Stage stage = null;
@@ -481,6 +482,9 @@ public class MainWindowController implements FXMLController, Initializable {
 
             createTab(langEntry.getTokenName(), langEntry.getTitle(), entry1);
         }
+
+        //create transition tab
+        createTransitionTab(entry);
     }
 
     protected void createTab (String langToken, String langTitle, QuestionLangEntry entry) {
@@ -494,6 +498,31 @@ public class MainWindowController implements FXMLController, Initializable {
             loader.setController(new TabController(langTitle, entry));
 
             Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
+
+            tab.setContent(rootPane);
+            tab.setClosable(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        tabPane.getTabs().add(tab);
+    }
+
+    protected void createTransitionTab (QuestionEntry entry) {
+        Tab tab = new Tab("Transition");
+
+        // load fxml
+        try {
+            FXMLLoader loader = new FXMLLoader(new File(TRANSITION_TAB_FXML_PATH).toURI().toURL());
+
+            //set controller
+            loader.setController(new TransitionTabController(entry));
+
+            Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
+
+            tab.setContent(rootPane);
+            tab.setClosable(false);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);

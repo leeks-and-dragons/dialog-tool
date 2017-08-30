@@ -154,6 +154,13 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
+        this.closeDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                hideAllWidgets();
+            }
+        });
+
         this.questionList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -176,6 +183,7 @@ public class MainWindowController implements FXMLController, Initializable {
         //disable save menu items
         this.saveDialogMenuItem.setDisable(true);
         this.savePathDialogMenuItem.setDisable(true);
+        this.closeDialogMenuItem.setDisable(true);
     }
 
     protected void showAllWidgets () {
@@ -189,6 +197,7 @@ public class MainWindowController implements FXMLController, Initializable {
         //enable save menu items
         this.saveDialogMenuItem.setDisable(false);
         this.savePathDialogMenuItem.setDisable(false);
+        this.closeDialogMenuItem.setDisable(false);
     }
 
     protected void createNewDialog () {

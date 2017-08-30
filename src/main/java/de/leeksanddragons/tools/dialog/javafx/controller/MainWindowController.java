@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog.javafx.controller;
 
+import de.leeksanddragons.tools.dialog.Main;
 import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.javafx.window.OpenFileDialog;
@@ -21,6 +22,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -229,6 +231,18 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //create new json object
         JSONObject json = new JSONObject();
+
+        //set tool version
+        json.put("tool_version", Main.VERSION_NUMBER);
+
+        //save supported languages
+        JSONArray jsonArray = new JSONArray();
+
+        for (LangEntry langEntry : this.langLoader.listSupportedLanguages()) {
+            jsonArray.put(langEntry.getTokenName());
+        }
+
+        json.put("supported_languages", jsonArray);
 
         //save file
         try {

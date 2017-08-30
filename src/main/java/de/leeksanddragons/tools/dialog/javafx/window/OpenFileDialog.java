@@ -33,6 +33,12 @@ public class OpenFileDialog {
         this.stage.show();
 
         fileChooser.setTitle("Open...");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Leeks & Dragons Dialog File", "*.ldf"),
+                new FileChooser.ExtensionFilter("Dialog File", "*.dlf")
+        );
+
         return fileChooser.showOpenDialog(stage);
     }
 

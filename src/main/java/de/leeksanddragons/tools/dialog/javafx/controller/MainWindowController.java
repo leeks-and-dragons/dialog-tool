@@ -111,6 +111,21 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
+        this.deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (questionList.getItems().size() <= 0) {
+                    return;
+                }
+
+                //search for selected item
+                String selectedName = questionList.getSelectionModel().getSelectedItem();
+
+                //remove question
+                removeQuestion(selectedName);
+            }
+        });
+
         this.newQuestionTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

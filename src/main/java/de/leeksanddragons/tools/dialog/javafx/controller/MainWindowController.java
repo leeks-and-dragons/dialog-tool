@@ -133,6 +133,13 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
+        this.openDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                openDialog();
+            }
+        });
+
         this.saveDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -165,6 +172,10 @@ public class MainWindowController implements FXMLController, Initializable {
         questionList.setVisible(false);
         newQuestionTextField.setVisible(false);
         newQuestionButton.setVisible(false);
+
+        //disable save menu items
+        this.saveDialogMenuItem.setDisable(true);
+        this.savePathDialogMenuItem.setDisable(true);
     }
 
     protected void showAllWidgets () {
@@ -174,6 +185,10 @@ public class MainWindowController implements FXMLController, Initializable {
         questionList.setVisible(true);
         newQuestionTextField.setVisible(true);
         newQuestionButton.setVisible(true);
+
+        //enable save menu items
+        this.saveDialogMenuItem.setDisable(false);
+        this.savePathDialogMenuItem.setDisable(false);
     }
 
     protected void createNewDialog () {

@@ -414,14 +414,28 @@ public class MainWindowController implements FXMLController, Initializable {
             return;
         }
 
-        //TODO: add code here
-
         //check tool version
         int requestedToolVersion = json.getInt("tool_version");
         System.out.println("requested tool version: " + requestedToolVersion);
 
         if (requestedToolVersion > Main.VERSION_NUMBER) {
             throw new IncompatibleVersionException("requested version: " + requestedToolVersion + ", tool version: " + Main.VERSION_NUMBER + ".", requestedToolVersion);
+        }
+
+        //get all supported languages
+        JSONArray jsonArray = json.getJSONArray("supported_languages");
+
+        List<String> supportedLangTokens = this.langLoader.listSupportedLanguageTokens();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            String langToken = jsonArray.getString(i);
+
+            if (!supportedLangTokens.contains(langToken)) {
+                //language isnt supported by this tool
+                JavaFXUtils.showInfoDialog("Information", "Language token '" + langToken + "' isnt originally supported by this tool, so this lang token was appended, so you can work with it.");
+
+                this.langLoader.addLang(langToken, "Unknown: " + langToken);
+            }
         }
     }
 

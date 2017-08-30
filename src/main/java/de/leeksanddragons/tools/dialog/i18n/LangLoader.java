@@ -84,6 +84,20 @@ public class LangLoader {
         return this.list;
     }
 
+    public List<String> listSupportedLanguageTokens () {
+        List<String> list = new ArrayList<>();
+
+        for (LangEntry entry : listSupportedLanguages()) {
+            list.add(entry.getTokenName());
+        }
+
+        return list;
+    }
+
+    public void addLang (String langToken, String title) {
+        this.list.add(new LangEntry(langToken, title));
+    }
+
     private void parseLangArrayEntry (JSONObject json) {
         //parse json and get token name and title of language
         String tokenName = json.getString("tokenName");

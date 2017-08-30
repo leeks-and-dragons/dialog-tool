@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.javafx.controller;
 
 import de.leeksanddragons.tools.dialog.Main;
+import de.leeksanddragons.tools.dialog.exception.IncompatibleVersionException;
 import de.leeksanddragons.tools.dialog.i18n.LangLoader;
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.javafx.SaveableTab;
@@ -327,7 +328,19 @@ public class MainWindowController implements FXMLController, Initializable {
         this.lastSavePath = file.getAbsolutePath();
 
         //open dialog
-        this.load(this.lastSavePath);
+        try {
+            this.load(this.lastSavePath);
+        } catch (IncompatibleVersionException e) {
+            e.printStackTrace();
+
+            //version isnt supported by this tool
+            JavaFXUtils.showErrorDialog("Error", "Cannot open this Dialog, because dialog was created with an newer version of this tool.");
+
+            //hide all widgets
+            hideAllWidgets();
+
+            return;
+        }
 
         //refresh list
         this.refreshListView();
@@ -387,7 +400,7 @@ public class MainWindowController implements FXMLController, Initializable {
         }
     }
 
-    protected void load (String filePath) {
+    protected void load (String filePath) throws IncompatibleVersionException {
         //clear map
         this.questionMap.clear();
 
@@ -410,13 +423,7 @@ public class MainWindowController implements FXMLController, Initializable {
         System.out.println("requested tool version" + requestedToolVersion);
 
         if (requestedToolVersion > Main.VERSION_NUMBER) {
-            //version isnt supported by this tool
-            JavaFXUtils.showErrorDialog("Error", "Cannot open this Dialog, because dialog was created with an newer version of this tool.");
-
-            //hide all widgets
-            this.hideAllWidgets();
-
-            return;
+            throw new IncompatibleVersionException("requested version: " + requestedToolVersion + ", tool version: " + Main.VERSION_NUMBER + ".");
         }
     }
 

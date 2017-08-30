@@ -2,6 +2,7 @@ package de.leeksanddragons.tools.dialog.model;
 
 import de.leeksanddragons.tools.dialog.json.JSONLoadable;
 import de.leeksanddragons.tools.dialog.json.JSONSerializable;
+import de.leeksanddragons.tools.dialog.model.transition.Transition;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

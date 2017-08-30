@@ -392,8 +392,15 @@ public class MainWindowController implements FXMLController, Initializable {
         //remove question from map
         this.questionMap.remove(questionName);
 
-        //refresh listview and tabpane
+        //refresh listview
         this.refreshListView();
+
+        //select another item
+        if (this.questionList.getItems().size() > 0) {
+            this.questionList.getSelectionModel().select(questionList.getItems().size() - 1);
+        }
+
+        //refresh tabpane
         this.refreshTabPane();
     }
 

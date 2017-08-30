@@ -379,7 +379,19 @@ public class MainWindowController implements FXMLController, Initializable {
     }
 
     protected void load (String filePath) {
-        //
+        JSONObject json = null;
+
+        try {
+            String content = FileUtils.readFile(filePath, StandardCharsets.UTF_8);
+            json = new JSONObject(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+            JavaFXUtils.showExceptionDialog("Exception", "Exception while loading file", "An exception occurred while loading file! Please report developers!", e);
+
+            return;
+        }
+
+        //TODO: add code here
     }
 
     @Override

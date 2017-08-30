@@ -12,4 +12,13 @@ public class RaiseEventTransition extends Transition {
         //
     }
 
+    @Override
+    public String getType() {
+        return "raise_event";
+    }
+
+    @Override
+    public String getIconPath() {
+        return "data/icons/optimization_48.png";
+    }
 }

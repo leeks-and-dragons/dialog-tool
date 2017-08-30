@@ -34,6 +34,10 @@ public abstract class Transition implements JSONSerializable, JSONLoadable {
 
     public abstract void createNewInstance ();
 
+    public abstract String getType ();
+
+    public abstract String getIconPath ();
+
     @Override
     public void loadFromJSON(JSONObject json) {
         //TODO: add code here

@@ -8,4 +8,14 @@ public class QuestionTransition extends Transition {
     public void createNewInstance() {
 
     }
+
+    @Override
+    public String getType() {
+        return "next_question";
+    }
+
+    @Override
+    public String getIconPath() {
+        return "data/icons/arrow_right_48.png";
+    }
 }

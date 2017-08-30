@@ -12,4 +12,14 @@ public class QuitDialogTransition extends Transition {
 
     }
 
+    @Override
+    public String getType() {
+        return "quit_dialog";
+    }
+
+    @Override
+    public String getIconPath() {
+        return "data/icons/cancel_48.png";
+    }
+
 }

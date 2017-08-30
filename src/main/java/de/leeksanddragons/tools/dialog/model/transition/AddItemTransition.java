@@ -14,4 +14,14 @@ public class AddItemTransition extends Transition {
     public void createNewInstance() {
 
     }
+
+    @Override
+    public String getType() {
+        return "add_item";
+    }
+
+    @Override
+    public String getIconPath() {
+        return "data/icons/box_48.png";
+    }
 }

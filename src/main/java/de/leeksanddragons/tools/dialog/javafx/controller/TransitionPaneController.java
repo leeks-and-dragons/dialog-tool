@@ -22,7 +22,7 @@ public class TransitionPaneController implements FXMLController, Initializable {
     protected Button addTransitionButton;
 
     @FXML
-    protected ListView<String> listView;
+    protected ListView<Pane> listView;
 
     public TransitionPaneController (QuestionEntry entry, int index) {
         //
@@ -30,7 +30,7 @@ public class TransitionPaneController implements FXMLController, Initializable {
 
     @Override
     public void init(Stage stage, Scene scene, Pane pane) {
-
+        //
     }
 
     @Override

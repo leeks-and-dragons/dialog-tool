@@ -11,4 +11,14 @@ public class FinishQuestTransition extends Transition {
     public void createNewInstance() {
 
     }
+
+    @Override
+    public String getType() {
+        return "finish_quest";
+    }
+
+    @Override
+    public String getIconPath() {
+        return "data/icons/flag_48.png";
+    }
 }

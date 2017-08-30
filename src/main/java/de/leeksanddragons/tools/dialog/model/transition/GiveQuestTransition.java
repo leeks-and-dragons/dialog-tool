@@ -11,4 +11,14 @@ public class GiveQuestTransition extends Transition {
     public void createNewInstance() {
 
     }
+
+    @Override
+    public String getType() {
+        return "give_quest";
+    }
+
+    @Override
+    public String getIconPath() {
+        return "data/icons/question_48.png";
+    }
 }

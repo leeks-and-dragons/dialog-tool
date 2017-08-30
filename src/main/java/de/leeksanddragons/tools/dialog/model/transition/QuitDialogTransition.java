@@ -1,5 +1,9 @@
 package de.leeksanddragons.tools.dialog.model.transition;
 
+import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.model.QuestionEntry;
+import org.json.JSONObject;
+
 /**
  * Transition which closes the dialog
  *
@@ -8,8 +12,13 @@ package de.leeksanddragons.tools.dialog.model.transition;
 public class QuitDialogTransition extends Transition {
 
     @Override
-    public void createNewInstance() {
+    public FXMLController createFXMLController(QuestionEntry entry, int index) {
+        return null;
+    }
 
+    @Override
+    public String getFXMLPath() {
+        return null;
     }
 
     @Override
@@ -20,6 +29,11 @@ public class QuitDialogTransition extends Transition {
     @Override
     public String getIconPath() {
         return "data/icons/cancel_48.png";
+    }
+
+    @Override
+    protected void addJSONParams(JSONObject json) {
+        //
     }
 
 }

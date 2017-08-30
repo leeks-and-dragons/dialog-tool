@@ -70,6 +70,10 @@ public class FXMLWindow {
         this(title, width, height, fxmlPath, null);
     }
 
+    public Stage getStage () {
+        return this.stage;
+    }
+
     public void setVisible (boolean visible) {
         if (!visible) {
             this.stage.hide();

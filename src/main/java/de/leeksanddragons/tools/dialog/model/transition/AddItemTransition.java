@@ -1,5 +1,10 @@
 package de.leeksanddragons.tools.dialog.model.transition;
 
+import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.controller.transition.AddItemTransitionController;
+import de.leeksanddragons.tools.dialog.model.QuestionEntry;
+import org.json.JSONObject;
+
 /**
  * Adds or substracts some items from player
  *
@@ -10,9 +15,23 @@ public class AddItemTransition extends Transition {
     protected String uniqueItemName = "";
     protected int numberOfItems = 0;
 
-    @Override
-    public void createNewInstance() {
+    public AddItemTransition (String name, int itemCount) {
+        this.uniqueItemName = name;
+        this.numberOfItems = itemCount;
+    }
 
+    public AddItemTransition () {
+        //
+    }
+
+    @Override
+    public FXMLController createFXMLController(QuestionEntry entry, int index) {
+        return new AddItemTransitionController(entry, index);
+    }
+
+    @Override
+    public String getFXMLPath() {
+        return "./data/ui/transitions/add_item.fxml";
     }
 
     @Override
@@ -24,4 +43,11 @@ public class AddItemTransition extends Transition {
     public String getIconPath() {
         return "data/icons/box_48.png";
     }
+
+    @Override
+    protected void addJSONParams(JSONObject json) {
+        json.put("item_name", this.uniqueItemName);
+        json.put("item_count", this.numberOfItems);
+    }
+    
 }

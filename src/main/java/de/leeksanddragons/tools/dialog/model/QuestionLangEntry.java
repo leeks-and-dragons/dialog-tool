@@ -35,12 +35,24 @@ public class QuestionLangEntry implements JSONSerializable, JSONLoadable {
         return this.choice1;
     }
 
+    public void setChoice1Text (String text) {
+        this.choice1 = text;
+    }
+
     public String getChoise2Text () {
         return this.choice2;
     }
 
+    public void setChoice2Text (String text) {
+        this.choice2 = text;
+    }
+
     public String getChoise3Text () {
         return this.choice3;
+    }
+
+    public void setChoice3Text (String text) {
+        this.choice3 = text;
     }
 
     @Override

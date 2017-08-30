@@ -58,9 +58,10 @@ public class TabController implements FXMLController, Initializable, SaveableTab
     }
 
     public void saveTab () {
-        System.out.println("text: " + textArea.getText());
-
         entry.setText(textArea.getText());
+        entry.setChoice1Text(this.choise1TextField.getText());
+        entry.setChoice2Text(this.choise2TextField.getText());
+        entry.setChoice3Text(this.choise3TextField.getText());
     }
 
     @Override
@@ -73,7 +74,9 @@ public class TabController implements FXMLController, Initializable, SaveableTab
 
     }
 
-    public void reset () {
+    public void reset (QuestionLangEntry entry) {
+        this.entry = entry;
+
         this.textArea.setText("");
         this.choise1TextField.setText("");
         this.choise2TextField.setText("");

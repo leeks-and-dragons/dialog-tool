@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="48.0" fitWidth="59.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/arrow_right_48.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="titleLabel" layoutX="76.0" layoutY="6.0" prefHeight="17.0" prefWidth="160.0" text="Transition Type">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="descriptionLabel" layoutX="76.0" layoutY="33.0" prefHeight="27.0" prefWidth="354.0" text="Description">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="deleteButton" layoutX="430.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Delete" />
+      <Button fx:id="editButton" layoutX="353.0" layoutY="7.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Edit" />
+   </children>
+</AnchorPane>

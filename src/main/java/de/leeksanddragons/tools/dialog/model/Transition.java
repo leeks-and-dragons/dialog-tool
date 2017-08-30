@@ -15,15 +15,21 @@ public class Transition implements JSONSerializable, JSONLoadable {
 
     @Override
     public void loadFromJSON(JSONObject json) {
-
+        //TODO: add code here
     }
 
     @Override
     public JSONObject toJSON() {
-        return null;
+        JSONObject json = new JSONObject();
+
+        //TODO: add code here
+
+        return json;
     }
 
     public static Transition createFromJSON (JSONObject json) {
+        //TODO: add code here
+
         return new Transition();
     }
 

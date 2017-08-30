@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -36,6 +37,8 @@ import java.util.*;
  * Created by Justin on 29.08.2017.
  */
 public class MainWindowController implements FXMLController, Initializable {
+
+    public static final String TAB_FXML_PATH = "./data/ui/tab.fxml";
 
     @FXML
     protected Stage stage = null;
@@ -482,6 +485,19 @@ public class MainWindowController implements FXMLController, Initializable {
 
     protected void createTab (String langToken, String langTitle, QuestionLangEntry entry) {
         Tab tab = new Tab(langTitle);
+
+        // load fxml
+        try {
+            FXMLLoader loader = new FXMLLoader(new File(TAB_FXML_PATH).toURI().toURL());
+
+            //set controller
+            loader.setController(new TabController(langTitle, entry));
+
+            Pane rootPane = loader.load();//FXMLLoader.load(new File(fxmlPath).toURI().toURL());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
 
         tabPane.getTabs().add(tab);
     }

@@ -194,6 +194,13 @@ public class MainWindowController implements FXMLController, Initializable {
     }
 
     protected void openSaveDialog () {
+        //check, if dialog is opened
+        if (!this.questionList.isVisible()) {
+            JavaFXUtils.showErrorDialog("Error", "No Dialog is opened!");
+
+            return;
+        }
+
         if (this.lastSavePath.isEmpty()) {
             //no save path is given, so open "save to" dialog
             this.openSaveToDialog();
@@ -205,8 +212,21 @@ public class MainWindowController implements FXMLController, Initializable {
     }
 
     protected void openSaveToDialog () {
+        //check, if dialog is opened
+        if (!this.questionList.isVisible()) {
+            JavaFXUtils.showErrorDialog("Error", "No Dialog is opened!");
+
+            return;
+        }
+
         SaveFileDialog dialog = new SaveFileDialog(this.stage);
         File saveFile = dialog.open();
+
+        if (saveFile == null) {
+            //user has aborted dialog
+
+            return;
+        }
 
         //set last save path
         this.lastSavePath = saveFile.getAbsolutePath();
@@ -218,6 +238,12 @@ public class MainWindowController implements FXMLController, Initializable {
     protected void openDialog () {
         OpenFileDialog dialog = new OpenFileDialog(this.stage);
         File file = dialog.open();
+
+        if (file == null) {
+            //user has aborted dialog
+
+            return;
+        }
 
         //set last save path
         this.lastSavePath = file.getAbsolutePath();

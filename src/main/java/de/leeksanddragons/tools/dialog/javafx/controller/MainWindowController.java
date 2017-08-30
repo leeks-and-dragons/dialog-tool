@@ -328,6 +328,15 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //open dialog
         this.load(this.lastSavePath);
+
+        //refresh list
+        this.refreshListView();
+
+        //refresh tab pane
+        this.refreshTabPane();
+
+        //show all widgets
+        this.showAllWidgets();
     }
 
     protected void saveOpenTabs () {
@@ -379,6 +388,9 @@ public class MainWindowController implements FXMLController, Initializable {
     }
 
     protected void load (String filePath) {
+        //clear map
+        this.questionMap.clear();
+
         JSONObject json = null;
 
         try {
@@ -392,6 +404,20 @@ public class MainWindowController implements FXMLController, Initializable {
         }
 
         //TODO: add code here
+
+        //check tool version
+        int requestedToolVersion = json.getInt("tool_version");
+        System.out.println("requested tool version" + requestedToolVersion);
+
+        if (requestedToolVersion > Main.VERSION_NUMBER) {
+            //version isnt supported by this tool
+            JavaFXUtils.showErrorDialog("Error", "Cannot open this Dialog, because dialog was created with an newer version of this tool.");
+
+            //hide all widgets
+            this.hideAllWidgets();
+
+            return;
+        }
     }
 
     @Override

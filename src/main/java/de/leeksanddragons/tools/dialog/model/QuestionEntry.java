@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog.model;
 
+import de.leeksanddragons.tools.dialog.json.JSONLoadable;
 import de.leeksanddragons.tools.dialog.json.JSONSerializable;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -12,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Justin on 29.08.2017.
  */
-public class QuestionEntry implements JSONSerializable {
+public class QuestionEntry implements JSONSerializable, JSONLoadable {
 
     /**
     * unique name of question
@@ -76,5 +77,10 @@ public class QuestionEntry implements JSONSerializable {
         json.put("langs", jsonArray);
 
         return json;
+    }
+
+    @Override
+    public void loadFromJSON(JSONObject json) {
+        //TODO: add code here
     }
 }

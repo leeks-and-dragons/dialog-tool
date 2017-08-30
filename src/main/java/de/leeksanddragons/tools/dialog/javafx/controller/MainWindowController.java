@@ -17,9 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.json.JSONArray;
@@ -140,12 +138,18 @@ public class MainWindowController implements FXMLController, Initializable {
             }
         });
 
+        //set key shortcut
+        this.openDialogMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.CONTROL_DOWN));
+
         this.saveDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 openSaveDialog();
             }
         });
+
+        //set key shortcut
+        this.saveDialogMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN));
 
         this.savePathDialogMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override

@@ -1,5 +1,6 @@
 package de.leeksanddragons.tools.dialog.model;
 
+import de.leeksanddragons.tools.dialog.json.JSONLoadable;
 import de.leeksanddragons.tools.dialog.json.JSONSerializable;
 import org.json.JSONObject;
 
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by Justin on 29.08.2017.
  */
-public class QuestionLangEntry implements JSONSerializable {
+public class QuestionLangEntry implements JSONSerializable, JSONLoadable {
 
     protected String text = "";
     protected String langToken = "";
@@ -34,4 +35,9 @@ public class QuestionLangEntry implements JSONSerializable {
         return json;
     }
 
+    @Override
+    public void loadFromJSON(JSONObject json) {
+        this.langToken = json.getString("langToken");
+        this.text = json.getString("text");
+    }
 }

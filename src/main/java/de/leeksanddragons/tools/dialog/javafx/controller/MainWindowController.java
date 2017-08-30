@@ -81,6 +81,9 @@ public class MainWindowController implements FXMLController, Initializable {
     @FXML
     protected MenuItem closeDialogMenuItem;
 
+    @FXML
+    protected MenuItem aboutMenuItem;
+
     protected String lastSavePath = "";
 
     public MainWindowController (LangLoader loader) {
@@ -162,6 +165,13 @@ public class MainWindowController implements FXMLController, Initializable {
             @Override
             public void handle(ActionEvent event) {
                 hideAllWidgets();
+            }
+        });
+
+        this.aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                JavaFXUtils.showInfoDialog("About", "This Dialog Tool was created for gam Leeks & Dragons.\nVersion: " + Main.VERSION_NUMBER + ".\n\nhttp://leeks-and-dragons.de\nCopyright (c) 2017, All Rights Reserved.");
             }
         });
 
@@ -338,6 +348,12 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //create question entry and add to list
         QuestionEntry entry = new QuestionEntry(questionName);
+
+        //add languages
+        for (LangEntry langEntry : this.langLoader.listSupportedLanguages()) {
+            entry.addLang(langEntry.getTokenName());
+        }
+
         this.questionMap.put(questionName, entry);
 
         //refresh listview

@@ -232,7 +232,8 @@ public class MainWindowController implements FXMLController, Initializable {
         //create new json object
         JSONObject json = new JSONObject();
 
-        //set tool version
+        //set tool name and version
+        json.put("tool_name", "Leeks & Dragons - Dialog Tool");
         json.put("tool_version", Main.VERSION_NUMBER);
 
         //save supported languages
@@ -243,6 +244,16 @@ public class MainWindowController implements FXMLController, Initializable {
         }
 
         json.put("supported_languages", jsonArray);
+
+        //save questions
+        JSONArray jsonArray1 = new JSONArray();
+
+        //iterate through all questions of dialog
+        for (Map.Entry<String,QuestionEntry> entry : this.questionMap.entrySet()) {
+            jsonArray1.put(entry.getValue().toJSON());
+        }
+
+        json.put("questions", jsonArray1);
 
         //save file
         try {

@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.utils;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
@@ -8,6 +9,7 @@ import javafx.scene.layout.Priority;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Optional;
 
 /**
  * Created by Justin on 30.08.2017.
@@ -39,6 +41,17 @@ public class JavaFXUtils {
         alert.setContentText(content);
 
         alert.showAndWait();
+    }
+
+    public static boolean showConfirmationDialog (String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        return result.get() == ButtonType.OK;
     }
 
     public static void showExceptionDialog (String title, String headerText, String content, Throwable e) {

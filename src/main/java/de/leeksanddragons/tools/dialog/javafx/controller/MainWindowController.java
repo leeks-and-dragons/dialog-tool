@@ -47,6 +47,9 @@ public class MainWindowController implements FXMLController, Initializable {
     protected Button newQuestionButton;
 
     @FXML
+    protected Button deleteButton;
+
+    @FXML
     protected Label questionsLabel;
 
     @FXML
@@ -192,6 +195,7 @@ public class MainWindowController implements FXMLController, Initializable {
         questionsLabel.setVisible(false);
         questionList.setVisible(false);
         newQuestionTextField.setVisible(false);
+        deleteButton.setVisible(false);
         newQuestionButton.setVisible(false);
 
         //disable save menu items
@@ -206,6 +210,7 @@ public class MainWindowController implements FXMLController, Initializable {
         questionsLabel.setVisible(true);
         questionList.setVisible(true);
         newQuestionTextField.setVisible(true);
+        deleteButton.setVisible(true);
         newQuestionButton.setVisible(true);
 
         //enable save menu items
@@ -361,6 +366,19 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //select question
         this.questionList.getSelectionModel().select(questionName);
+        this.refreshTabPane();
+    }
+
+    protected void removeQuestion (String questionName) {
+        if (!JavaFXUtils.showConfirmationDialog("Remove Question", "Really remove question '" + questionName + "'?")) {
+            return;
+        }
+
+        //remove question from map
+        this.questionMap.remove(questionName);
+
+        //refresh listview and tabpane
+        this.refreshListView();
         this.refreshTabPane();
     }
 

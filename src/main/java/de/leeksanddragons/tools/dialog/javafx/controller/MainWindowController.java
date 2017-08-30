@@ -208,7 +208,7 @@ public class MainWindowController implements FXMLController, Initializable {
         this.aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                JavaFXUtils.showInfoDialog("About", "This Dialog Tool was created for gam Leeks & Dragons.\nVersion: " + Main.VERSION_NUMBER + ".\n\nAuthor: http://jukusoft.com\n\nhttp://leeks-and-dragons.de\nCopyright (c) 2017 leeks-and-dragons.de, All Rights Reserved.");
+                JavaFXUtils.showInfoDialog("About", "This Dialog Tool was created for game Leeks & Dragons.\nVersion: " + Main.VERSION_NUMBER + ".\n\nAuthor: http://jukusoft.com\n\nhttp://leeks-and-dragons.de\nCopyright (c) 2017 leeks-and-dragons.de, All Rights Reserved.");
             }
         });
 

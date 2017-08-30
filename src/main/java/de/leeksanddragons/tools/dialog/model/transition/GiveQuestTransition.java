@@ -7,4 +7,8 @@ public class GiveQuestTransition extends Transition {
 
     protected String uniqueQuestName = "";
 
+    @Override
+    public void createNewInstance() {
+
+    }
 }

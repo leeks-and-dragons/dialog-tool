@@ -7,4 +7,9 @@ public class RaiseEventTransition extends Transition {
 
     protected String eventName = "";
 
+    @Override
+    public void createNewInstance() {
+        //
+    }
+
 }

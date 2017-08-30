@@ -10,4 +10,8 @@ public class AddItemTransition extends Transition {
     protected String uniqueItemName = "";
     protected int numberOfItems = 0;
 
+    @Override
+    public void createNewInstance() {
+
+    }
 }

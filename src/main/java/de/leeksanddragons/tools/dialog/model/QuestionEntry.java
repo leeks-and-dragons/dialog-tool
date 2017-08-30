@@ -36,7 +36,7 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
      */
     protected Map<Integer,List<Transition>> transitionMap = new HashMap<>();
 
-    protected static final int MAX_CHOICES = 3;
+    public static final int MAX_CHOICES = 3;
 
     public QuestionEntry (String questionName) {
         this.name = questionName;

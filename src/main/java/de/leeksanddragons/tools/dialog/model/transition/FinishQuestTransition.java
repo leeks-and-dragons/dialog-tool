@@ -7,4 +7,8 @@ public class FinishQuestTransition extends Transition {
 
     protected String uniqueQuestName = "";
 
+    @Override
+    public void createNewInstance() {
+
+    }
 }

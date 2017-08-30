@@ -7,6 +7,9 @@ package de.leeksanddragons.tools.dialog.model.transition;
  */
 public class QuitDialogTransition extends Transition {
 
-    //
+    @Override
+    public void createNewInstance() {
+
+    }
 
 }

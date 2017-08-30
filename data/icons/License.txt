@@ -1,2 +1,3 @@
 cancel_128.png & cancel.png:
 Free for commercial use.
+Source: https://www.iconfinder.com/icons/282471/cross_delete_remove_icon#size=32

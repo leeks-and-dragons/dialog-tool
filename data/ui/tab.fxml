@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -21,7 +22,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Text:">
+            <Label text="Image:">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
@@ -29,7 +30,7 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <TextArea fx:id="textArea" prefHeight="174.0" prefWidth="302.0" promptText="Your Dialog Text" GridPane.columnIndex="1">
+            <TextArea fx:id="textArea" prefHeight="174.0" prefWidth="302.0" promptText="Your Dialog Text" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
@@ -69,7 +70,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </GridPane.margin>
             </ToolBar>
-            <Label layoutX="30.0" layoutY="44.0" text="Image:" GridPane.rowIndex="1">
+            <Label layoutX="30.0" layoutY="44.0" text="Text:" GridPane.rowIndex="1">
                <font>
                   <Font size="26.0" />
                </font>

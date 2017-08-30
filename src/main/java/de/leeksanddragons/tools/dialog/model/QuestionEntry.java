@@ -30,12 +30,21 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
     */
     protected Map<String,QuestionLangEntry> entries = new HashMap<>();
 
+    /**
+     * transition lists for every choice
+     */
+    protected Map<Integer,List<Transition>> transitionMap = new HashMap<>();
+
+    protected static final int MAX_CHOICES = 3;
+
     public QuestionEntry (String questionName) {
         this.name = questionName;
     }
 
     protected QuestionEntry () {
-        //
+        for (int i = 1; i <= MAX_CHOICES; i++) {
+            transitionMap.put(i, new ArrayList<>());
+        }
     }
 
     public List<String> getLanguages () {
@@ -66,6 +75,15 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
         return this.name;
     }
 
+    public List<Transition> getTranstionList (int index) {
+        //create an new list, if list doesnt exists
+        if (!this.transitionMap.containsKey(index)) {
+            this.transitionMap.put(index, new ArrayList<>());
+        }
+
+        return this.transitionMap.get(index);
+    }
+
     @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
@@ -84,6 +102,25 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
         //put json array
         json.put("langs", jsonArray);
 
+        //save number of max choices in dialog
+        json.put("max_choices", MAX_CHOICES);
+
+        //save transitions
+        for (int i = 1; i <= MAX_CHOICES; i++) {
+            //get all transitions
+            List<Transition> list = getTranstionList(i);
+
+            JSONArray jsonArray1 = new JSONArray();
+
+            //iterate through all transitions
+            for (Transition transition : list) {
+                jsonArray1.put(transition.toJSON());
+            }
+
+            //put json array
+            json.put("transitions_" + i, jsonArray1);
+        }
+
         return json;
     }
 
@@ -98,6 +135,23 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
 
             this.entries.put(entry.getLangToken(), entry);
             this.langList.add(entry.getLangToken());
+        }
+
+        //load transitions
+        int maxChoices = json.getInt("max_choices");
+
+        for (int i = 1; i <= maxChoices; i++) {
+            JSONArray jsonArray1 = json.getJSONArray("transitions_" + i);
+
+            for (int k = 0; k < jsonArray1.length(); k++) {
+                JSONObject jsonObject = jsonArray1.getJSONObject(k);
+
+                //create transition
+                Transition transition = Transition.createFromJSON(jsonObject);
+
+                //add transition to list
+                this.getTranstionList(i).add(transition);
+            }
         }
     }
 

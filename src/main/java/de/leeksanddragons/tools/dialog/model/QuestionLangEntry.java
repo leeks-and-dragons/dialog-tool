@@ -23,6 +23,10 @@ public class QuestionLangEntry implements JSONSerializable, JSONLoadable {
         this.langToken = langToken;
     }
 
+    protected QuestionLangEntry () {
+        //
+    }
+
     public String getText () {
         return this.text;
     }
@@ -55,21 +59,45 @@ public class QuestionLangEntry implements JSONSerializable, JSONLoadable {
         this.choice3 = text;
     }
 
+    public String getLangToken () {
+        return this.langToken;
+    }
+
     @Override
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
 
         //save lang token and question text
         json.put("langToken", this.langToken);
-
         json.put("text", this.text);
+
+        //save choises
+        json.put("choice1", this.choice1);
+        json.put("choice2", this.choice2);
+        json.put("choice3", this.choice3);
 
         return json;
     }
 
     @Override
     public void loadFromJSON(JSONObject json) {
+        //load lang token and question text
         this.langToken = json.getString("langToken");
         this.text = json.getString("text");
+
+        //load choices
+        this.choice1 = json.getString("choice1");
+        this.choice2 = json.getString("choice2");
+        this.choice3 = json.getString("choice3");
     }
+
+    public static QuestionLangEntry createFromJSON (JSONObject json) {
+        QuestionLangEntry entry = new QuestionLangEntry();
+
+        //load entry from json
+        entry.loadFromJSON(json);
+
+        return entry;
+    }
+
 }

@@ -437,6 +437,17 @@ public class MainWindowController implements FXMLController, Initializable {
                 this.langLoader.addLang(langToken, "Unknown: " + langToken);
             }
         }
+
+        //load questions
+        JSONArray jsonArray1 = json.getJSONArray("questions");
+
+        //iterate through all questions
+        for (int i = 0; i < jsonArray1.length(); i++) {
+            JSONObject jsonObject = jsonArray1.getJSONObject(i);
+
+            String name = jsonObject.getString("name");
+            this.questionMap.put(name, QuestionEntry.createFromJSON(jsonObject));
+        }
     }
 
     @Override

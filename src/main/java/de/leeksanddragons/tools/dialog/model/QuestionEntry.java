@@ -34,6 +34,10 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
         this.name = questionName;
     }
 
+    protected QuestionEntry () {
+        //
+    }
+
     public List<String> getLanguages () {
         return this.langList;
     }
@@ -85,6 +89,25 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
 
     @Override
     public void loadFromJSON(JSONObject json) {
-        //TODO: add code here
+        this.name = json.getString("name");
+
+        JSONArray jsonArray = json.getJSONArray("langs");
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            QuestionLangEntry entry = QuestionLangEntry.createFromJSON(jsonArray.getJSONObject(i));
+
+            this.entries.put(entry.getLangToken(), entry);
+            this.langList.add(entry.getLangToken());
+        }
     }
+
+    public static QuestionEntry createFromJSON (JSONObject json) {
+        QuestionEntry entry = new QuestionEntry();
+
+        //load entry from JSON
+        entry.loadFromJSON(json);
+
+        return entry;
+    }
+
 }

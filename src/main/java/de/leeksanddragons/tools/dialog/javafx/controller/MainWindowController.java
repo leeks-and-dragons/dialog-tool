@@ -7,6 +7,7 @@ import de.leeksanddragons.tools.dialog.javafx.window.OpenFileDialog;
 import de.leeksanddragons.tools.dialog.javafx.window.SaveFileDialog;
 import de.leeksanddragons.tools.dialog.model.LangEntry;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
+import de.leeksanddragons.tools.dialog.model.QuestionLangEntry;
 import de.leeksanddragons.tools.dialog.utils.FileUtils;
 import de.leeksanddragons.tools.dialog.utils.JavaFXUtils;
 import javafx.collections.FXCollections;
@@ -468,10 +469,21 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //iterate through all supported languages
         for (LangEntry langEntry : this.langLoader.listSupportedLanguages()) {
-            Tab tab = new Tab(langEntry.getTitle());
+            QuestionLangEntry entry1 = entry.getLang(langEntry.getTokenName());
 
-            tabPane.getTabs().add(tab);
+            if (entry1 == null) {
+                //create new entry
+                entry1 = new QuestionLangEntry(langEntry.getTokenName());
+            }
+
+            createTab(langEntry.getTokenName(), langEntry.getTitle(), entry1);
         }
+    }
+
+    protected void createTab (String langToken, String langTitle, QuestionLangEntry entry) {
+        Tab tab = new Tab(langTitle);
+
+        tabPane.getTabs().add(tab);
     }
 
 }

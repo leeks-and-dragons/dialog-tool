@@ -150,6 +150,11 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
                 //create transition
                 Transition transition = Transition.createFromJSON(jsonObject);
 
+                //dont add transition, if type wasnt found
+                if (transition == null) {
+                    continue;
+                }
+
                 //add transition to list
                 this.getTranstionList(i).add(transition);
             }

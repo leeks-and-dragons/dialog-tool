@@ -51,4 +51,9 @@ public class QuestionTransition extends Transition {
         json.put("next_question", this.nextQuestion);
     }
 
+    @Override
+    public void loadParamsFromJSON(JSONObject json) {
+        this.nextQuestion = json.getString("next_question");
+    }
+
 }

@@ -2,8 +2,10 @@ package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
+import de.leeksanddragons.tools.dialog.json.JSONLoadable;
 import de.leeksanddragons.tools.dialog.json.JSONSerializable;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
+import de.leeksanddragons.tools.dialog.utils.JavaFXUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -67,10 +69,41 @@ public abstract class Transition implements JSONSerializable {
 
     protected abstract void addJSONParams (JSONObject json);
 
-    public static Transition createFromJSON (JSONObject json) {
-        //TODO: add code here
+    public abstract void loadParamsFromJSON (JSONObject json);
 
-        return null;
+    public static Transition createFromJSON (JSONObject json) {
+        //get type
+        String type = json.getString("type");
+
+        Transition transition = getTransitionByType(type);
+
+        if (transition == null) {
+            JavaFXUtils.showErrorDialog("Error", "Cannot load transition type '" + type + "', this transition type isnt supported yet.\nIf you save this file data can be lost!");
+
+            return null;
+        }
+
+        Transition transition1 = null;
+
+        try {
+            transition1 = transition.getClass().newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+
+            JavaFXUtils.showExceptionDialog("Exception", "Cannot load transition type '" + type + "', because an InstantiationException was thrown.\nPlease contact developers!", e);
+
+            return null;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+
+            JavaFXUtils.showExceptionDialog("Exception", "Cannot load transition type '" + type + "', because an IllegalAccessException was thrown.\nPlease contact developers!", e);
+
+            return null;
+        }
+
+        transition1.loadParamsFromJSON(json);
+
+        return transition1;
     }
 
     public static List<String> listTransitionTypeNames () {

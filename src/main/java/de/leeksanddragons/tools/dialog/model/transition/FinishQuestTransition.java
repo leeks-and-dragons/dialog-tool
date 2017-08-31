@@ -51,4 +51,9 @@ public class FinishQuestTransition extends Transition {
         json.put("quest_name", this.uniqueQuestName);
     }
 
+    @Override
+    public void loadParamsFromJSON(JSONObject json) {
+        this.uniqueQuestName = json.getString("quest_name");
+    }
+
 }

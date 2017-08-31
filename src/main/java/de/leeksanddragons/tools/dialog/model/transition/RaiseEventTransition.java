@@ -51,4 +51,9 @@ public class RaiseEventTransition extends Transition {
         json.put("event_name", this.eventName);
     }
 
+    @Override
+    public void loadParamsFromJSON(JSONObject json) {
+        this.eventName = json.getString("event_name");
+    }
+
 }

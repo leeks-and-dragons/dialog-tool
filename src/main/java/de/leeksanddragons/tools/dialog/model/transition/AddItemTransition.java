@@ -55,5 +55,11 @@ public class AddItemTransition extends Transition {
         json.put("item_name", this.uniqueItemName);
         json.put("item_count", this.numberOfItems);
     }
-    
+
+    @Override
+    public void loadParamsFromJSON(JSONObject json) {
+        this.uniqueItemName = json.getString("item_name");
+        this.numberOfItems = json.getInt("item_count");
+    }
+
 }

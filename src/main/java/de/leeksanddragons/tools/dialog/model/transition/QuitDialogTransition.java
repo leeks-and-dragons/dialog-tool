@@ -47,4 +47,9 @@ public class QuitDialogTransition extends Transition {
         //
     }
 
+    @Override
+    public void loadParamsFromJSON(JSONObject json) {
+        //
+    }
+
 }

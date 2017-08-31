@@ -1,0 +1,20 @@
+# How to Start Application
+
+## General
+
+If it is possible, you can double click on dialog-tool-<Version>-SNAPSHOT.jar file!
+Else, see other instructions!
+
+You can also open the application in console, if you go to this directory, write "java -jar <File Name>.jar" and ENTER.
+
+## Windows
+
+Open / Double click start.bat !
+
+## Linux
+
+Open / Double click start.sh !
+
+## Mac OSX
+
+Open / Double click start.cmd !

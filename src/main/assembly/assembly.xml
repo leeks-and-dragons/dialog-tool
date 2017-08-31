@@ -35,6 +35,15 @@
 			</excludes>
 		</fileSet>
 
+		<!-- startup directory -->
+		<fileSet>
+			<directory>startup</directory>
+			<outputDirectory>.</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+
 		<!-- add main jar to / -->
 		<fileSet>
 			<directory>target</directory>

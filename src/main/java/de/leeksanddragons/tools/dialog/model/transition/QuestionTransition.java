@@ -2,6 +2,7 @@ package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
+import de.leeksanddragons.tools.dialog.javafx.controller.transition.QuestionTransitionController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
 
@@ -12,14 +13,22 @@ public class QuestionTransition extends Transition {
 
     protected String nextQuestion = "";
 
+    public QuestionTransition (String nextQuestion) {
+        this.nextQuestion = nextQuestion;
+    }
+
+    public QuestionTransition () {
+        //
+    }
+
     @Override
     public FXMLController createFXMLController(TransitionPaneController paneController, QuestionEntry entry, int index) {
-        return null;
+        return new QuestionTransitionController(paneController, entry, index);
     }
 
     @Override
     public String getFXMLPath() {
-        return null;
+        return "data/ui/transitions/next_question.fxml";
     }
 
     @Override
@@ -39,7 +48,7 @@ public class QuestionTransition extends Transition {
 
     @Override
     protected void addJSONParams(JSONObject json) {
-        //
+        json.put("next_question", this.nextQuestion);
     }
 
 }

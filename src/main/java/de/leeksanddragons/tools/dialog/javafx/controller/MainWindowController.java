@@ -72,7 +72,7 @@ public class MainWindowController implements FXMLController, Initializable {
     /**
     * map with all questions of dialog
     */
-    protected Map<String,QuestionEntry> questionMap = new HashMap<>();
+    protected static Map<String,QuestionEntry> questionMap = new HashMap<>();
 
     /**
     * menu items
@@ -499,6 +499,16 @@ public class MainWindowController implements FXMLController, Initializable {
 
         //refresh tabpane
         this.refreshTabPane();
+    }
+
+    public static List<String> listQuestions () {
+        List<String> list = new ArrayList<>();
+
+        for (Map.Entry<String,QuestionEntry> entry : questionMap.entrySet()) {
+            list.add(entry.getKey());
+        }
+
+        return list;
     }
 
     protected void refreshListView () {

@@ -2,6 +2,7 @@ package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
+import de.leeksanddragons.tools.dialog.javafx.controller.transition.RaiseEventTransitionController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
 
@@ -12,14 +13,22 @@ public class RaiseEventTransition extends Transition {
 
     protected String eventName = "";
 
+    public RaiseEventTransition (String eventName) {
+        this.eventName = eventName;
+    }
+
+    public RaiseEventTransition () {
+        //
+    }
+
     @Override
     public FXMLController createFXMLController(TransitionPaneController paneController, QuestionEntry entry, int index) {
-        return null;
+        return new RaiseEventTransitionController(paneController, entry, index);
     }
 
     @Override
     public String getFXMLPath() {
-        return null;
+        return "data/ui/transitions/raise_event.fxml";
     }
 
     @Override
@@ -39,7 +48,7 @@ public class RaiseEventTransition extends Transition {
 
     @Override
     protected void addJSONParams(JSONObject json) {
-        //
+        json.put("event_name", this.eventName);
     }
 
 }

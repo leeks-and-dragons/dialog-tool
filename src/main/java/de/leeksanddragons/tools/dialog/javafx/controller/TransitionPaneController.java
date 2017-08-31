@@ -5,6 +5,7 @@ import de.leeksanddragons.tools.dialog.javafx.FXMLWindow;
 import de.leeksanddragons.tools.dialog.javafx.SaveableTab;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import de.leeksanddragons.tools.dialog.model.transition.Transition;
+import de.leeksanddragons.tools.dialog.utils.JavaFXUtils;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,7 +77,11 @@ public class TransitionPaneController implements FXMLController, Initializable {
             public void handle(MouseEvent event) {
                 String selectedType = typeChoiceBox.getSelectionModel().getSelectedItem();
 
-                addTransition(Transition.getTransitionByTitle(selectedType).getType());
+                try {
+                    addTransition(Transition.getTransitionByTitle(selectedType).getType());
+                } catch (Exception e) {
+                    JavaFXUtils.showErrorDialog("Cannot create transition", "Cannot create transition, maybe transition isnt supported yet. Please contact developers!");
+                }
             }
         });
 
@@ -105,9 +110,10 @@ public class TransitionPaneController implements FXMLController, Initializable {
     }
 
     public void refreshListView () {
-        //TODO: add code here
+        //clear all items
+        this.listView.getItems().clear();
 
-        System.out.println("count of transitions for index " + index + ":" + listTransitions().size());
+        System.out.println("count of transitions for index " + index + ": " + listTransitions().size());
 
         for (Transition transition : listTransitions()) {
             addRow(transition);
@@ -139,6 +145,10 @@ public class TransitionPaneController implements FXMLController, Initializable {
             System.exit(1);
         }
     }
+
+    /*public void removeRow (Transition transition, Pane rootPane) {
+        //
+    }*/
 
     @Override
     public void run() {

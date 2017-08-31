@@ -38,6 +38,8 @@ public class TransitionRowController implements FXMLController, Initializable {
     @FXML
     protected Button deleteButton;
 
+    protected Pane rootPane = null;
+
     protected TransitionPaneController paneController = null;
     protected QuestionEntry entry = null;
     protected int index = 0;
@@ -52,6 +54,8 @@ public class TransitionRowController implements FXMLController, Initializable {
 
     @Override
     public void init(Stage stage, Scene scene, Pane pane) {
+        this.rootPane = pane;
+
         imageView.setImage(new Image("file:" + transition.getIconPath()));
 
         //deactivate edit button, because he isnt suppoted yet

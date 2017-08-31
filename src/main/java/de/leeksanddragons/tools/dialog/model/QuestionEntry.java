@@ -43,7 +43,7 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
     }
 
     protected QuestionEntry () {
-        for (int i = 1; i <= MAX_CHOICES; i++) {
+        for (int i = 0; i <= MAX_CHOICES; i++) {
             transitionMap.put(i, new ArrayList<>());
         }
     }
@@ -107,7 +107,7 @@ public class QuestionEntry implements JSONSerializable, JSONLoadable {
         json.put("max_choices", MAX_CHOICES);
 
         //save transitions
-        for (int i = 1; i <= MAX_CHOICES; i++) {
+        for (int i = 0; i <= MAX_CHOICES; i++) {
             //get all transitions
             List<Transition> list = getTranstionList(i);
 

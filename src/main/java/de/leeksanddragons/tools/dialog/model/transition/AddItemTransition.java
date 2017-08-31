@@ -42,7 +42,7 @@ public class AddItemTransition extends Transition {
 
     @Override
     public String getDescription() {
-        return "add " + numberOfItems + " items of type '" + uniqueItemName + "'";
+        return "add " + numberOfItems + " item(s) of type '" + uniqueItemName + "'";
     }
 
     @Override

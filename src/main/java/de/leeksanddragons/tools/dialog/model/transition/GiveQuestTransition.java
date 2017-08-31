@@ -2,6 +2,7 @@ package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
 import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
+import de.leeksanddragons.tools.dialog.javafx.controller.transition.GiveQuestTransitionController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
 
@@ -12,14 +13,22 @@ public class GiveQuestTransition extends Transition {
 
     protected String uniqueQuestName = "";
 
+    public GiveQuestTransition (String questName) {
+        this.uniqueQuestName = questName;
+    }
+
+    public GiveQuestTransition () {
+        //
+    }
+
     @Override
     public FXMLController createFXMLController(TransitionPaneController paneController, QuestionEntry entry, int index) {
-        return null;
+        return new GiveQuestTransitionController(paneController, entry, index);
     }
 
     @Override
     public String getFXMLPath() {
-        return null;
+        return "data/ui/transitions/give_quest.fxml";
     }
 
     @Override
@@ -39,7 +48,7 @@ public class GiveQuestTransition extends Transition {
 
     @Override
     protected void addJSONParams(JSONObject json) {
-        //
+        json.put("quest_name", this.uniqueQuestName);
     }
 
 }

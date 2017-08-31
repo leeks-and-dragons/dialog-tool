@@ -81,6 +81,8 @@ public class TransitionPaneController implements FXMLController, Initializable {
                     addTransition(Transition.getTransitionByTitle(selectedType).getType());
                 } catch (Exception e) {
                     JavaFXUtils.showErrorDialog("Cannot create transition", "Cannot create transition, maybe transition isnt supported yet. Please contact developers!");
+
+                    return;
                 }
             }
         });
@@ -96,7 +98,15 @@ public class TransitionPaneController implements FXMLController, Initializable {
         //get fxml path
         String fxmlPath = Transition.getTransitionByType(typeName).getFXMLPath();
 
-        FXMLWindow dialog = new FXMLWindow("Add Transition", 440, 240, fxmlPath, Transition.getTransitionByType(typeName).createFXMLController(this, entry, index));
+        FXMLWindow dialog = null;
+
+        try {
+            dialog = new FXMLWindow("Add Transition", 440, 240, fxmlPath, Transition.getTransitionByType(typeName).createFXMLController(this, entry, index));
+        } catch (Exception e) {
+            JavaFXUtils.showExceptionDialog("Exception", "Cannot add transition, exception was thrown. Please copy this stacktrace and send it to developers!", e);
+
+            return;
+        }
 
         Stage stage = dialog.getStage();
         stage.hide();

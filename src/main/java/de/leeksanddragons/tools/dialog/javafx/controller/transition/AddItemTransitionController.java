@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.javafx.controller.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import de.leeksanddragons.tools.dialog.model.transition.AddItemTransition;
 import javafx.event.EventHandler;
@@ -30,10 +31,12 @@ public class AddItemTransitionController implements FXMLController, Initializabl
     @FXML
     protected Button addButton;
 
+    protected TransitionPaneController paneController = null;
     protected QuestionEntry entry = null;
     protected int index = 0;
 
-    public AddItemTransitionController (QuestionEntry entry, int index) {
+    public AddItemTransitionController (TransitionPaneController paneController, QuestionEntry entry, int index) {
+        this.paneController = paneController;
         this.entry = entry;
         this.index = index;
     }
@@ -67,6 +70,9 @@ public class AddItemTransitionController implements FXMLController, Initializabl
 
                 AddItemTransition transition = new AddItemTransition(itemName, itemCount);
                 entry.getTranstionList(index).add(transition);
+
+                //refresh listview
+                paneController.refreshListView();
 
                 stage.close();
             }

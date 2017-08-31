@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
 
@@ -12,7 +13,7 @@ public class RaiseEventTransition extends Transition {
     protected String eventName = "";
 
     @Override
-    public FXMLController createFXMLController(QuestionEntry entry, int index) {
+    public FXMLController createFXMLController(TransitionPaneController paneController, QuestionEntry entry, int index) {
         return null;
     }
 
@@ -24,6 +25,11 @@ public class RaiseEventTransition extends Transition {
     @Override
     public String getType() {
         return "raise_event";
+    }
+
+    @Override
+    public String getDescription() {
+        return "raise event '" + this.eventName + "'";
     }
 
     @Override

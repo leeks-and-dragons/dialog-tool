@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
 import de.leeksanddragons.tools.dialog.json.JSONSerializable;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
@@ -20,6 +21,7 @@ public abstract class Transition implements JSONSerializable {
     */
     protected static final Map<String,Transition> transitionTitlesMap = new HashMap<>();
     protected static final Map<String,Transition> transitionTypesMap = new HashMap<>();
+    protected static final Map<String,String> typeToTitleMap = new HashMap<>();
 
     static {
         transitionTitlesMap.put("Give Item", new AddItemTransition());
@@ -32,6 +34,8 @@ public abstract class Transition implements JSONSerializable {
         //iterate through all transition types
         for (Map.Entry<String,Transition> entry : transitionTitlesMap.entrySet()) {
             transitionTypesMap.put(entry.getValue().getType(), entry.getValue());
+
+            typeToTitleMap.put(entry.getValue().getType(), entry.getKey());
         }
     }
 
@@ -39,11 +43,13 @@ public abstract class Transition implements JSONSerializable {
         //
     }
 
-    public abstract FXMLController createFXMLController (QuestionEntry entry, int index);
+    public abstract FXMLController createFXMLController (TransitionPaneController paneController, QuestionEntry entry, int index);
 
     public abstract String getFXMLPath ();
 
     public abstract String getType ();
+
+    public abstract String getDescription ();
 
     public abstract String getIconPath ();
 
@@ -91,6 +97,14 @@ public abstract class Transition implements JSONSerializable {
         }
 
         return transitionTitlesMap.get(title);
+    }
+
+    public static String getTransitionTitleByType (String type) {
+        if (!typeToTitleMap.containsKey(type)) {
+            return "Unknown Title";
+        }
+
+        return typeToTitleMap.get(type);
     }
 
 }

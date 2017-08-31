@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
 import de.leeksanddragons.tools.dialog.javafx.controller.transition.AddItemTransitionController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
@@ -25,8 +26,8 @@ public class AddItemTransition extends Transition {
     }
 
     @Override
-    public FXMLController createFXMLController(QuestionEntry entry, int index) {
-        return new AddItemTransitionController(entry, index);
+    public FXMLController createFXMLController(TransitionPaneController paneController, QuestionEntry entry, int index) {
+        return new AddItemTransitionController(paneController, entry, index);
     }
 
     @Override
@@ -37,6 +38,11 @@ public class AddItemTransition extends Transition {
     @Override
     public String getType() {
         return "add_item";
+    }
+
+    @Override
+    public String getDescription() {
+        return "add " + numberOfItems + " items of type '" + uniqueItemName + "'";
     }
 
     @Override

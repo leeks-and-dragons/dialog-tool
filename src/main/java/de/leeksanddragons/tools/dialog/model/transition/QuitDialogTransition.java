@@ -1,6 +1,7 @@
 package de.leeksanddragons.tools.dialog.model.transition;
 
 import de.leeksanddragons.tools.dialog.javafx.FXMLController;
+import de.leeksanddragons.tools.dialog.javafx.controller.TransitionPaneController;
 import de.leeksanddragons.tools.dialog.model.QuestionEntry;
 import org.json.JSONObject;
 
@@ -12,7 +13,7 @@ import org.json.JSONObject;
 public class QuitDialogTransition extends Transition {
 
     @Override
-    public FXMLController createFXMLController(QuestionEntry entry, int index) {
+    public FXMLController createFXMLController(TransitionPaneController paneController, QuestionEntry entry, int index) {
         return null;
     }
 
@@ -24,6 +25,11 @@ public class QuitDialogTransition extends Transition {
     @Override
     public String getType() {
         return "quit_dialog";
+    }
+
+    @Override
+    public String getDescription() {
+        return "quit dialog";
     }
 
     @Override

@@ -54,6 +54,9 @@ public class QuestionTransitionController implements FXMLController, Initializab
 
         this.questionChoiceBox.setItems(questions);
 
+        //select first item
+        this.questionChoiceBox.getSelectionModel().select(0);
+
         addButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Finish Quest">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="questNameTextField" layoutX="147.0" layoutY="54.0" prefHeight="25.0" prefWidth="239.0" />
+      <Label layoutX="14.0" layoutY="58.0" text="Quest Name:" />
+      <Separator layoutX="2.0" layoutY="38.0" prefHeight="5.0" prefWidth="388.0" />
+      <Button fx:id="addButton" layoutX="292.0" layoutY="161.0" mnemonicParsing="false" text="Add Transition" />
+   </children>
+</AnchorPane>
